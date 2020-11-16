@@ -23,6 +23,8 @@ class PostForm extends Component
             'user_id' => auth()->user()->id
         ];
         Post::create($data);
+        $this->emit('refreshParent');
+        $this->dispatchBrowserEvent('closeModal');
         $this->cleanVars();
     }
 

@@ -9,30 +9,12 @@ use Livewire\WithPagination;
 class Posts extends Component
 {
     use WithPagination;
-    public $title;
-    public $content;
+    protected $paginationTheme = 'bootstrap';
+    
+    protected $listeners = [
+        'refreshParent' => '$refresh'
+    ];
 
-
-    public function save()
-    {
-        $this->validate([
-            'title' => 'required|min:10|max:30',
-            'content' => 'required'
-        ]);
-        $data = [
-            'title' => $this->title,
-            'content' => $this->content,
-            'user_id' => auth()->user()->id
-        ];
-        Post::create($data);
-        $this->cleanVars();
-    }
-
-    private function cleanVars()
-    {
-        $this->title = null;
-        $this->content = null;
-    }
 
     public function render()
     {

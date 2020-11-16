@@ -78,5 +78,14 @@
         </main>
     </div>
     @livewireScripts
+    
+
+    <script>
+        window.addEventListener('closeModal', event => {
+            $("#staticBackdrop").modal('hide');
+        })
+    </script>
+    
+    
 </body>
 </html>
