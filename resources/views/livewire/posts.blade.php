@@ -17,10 +17,7 @@
                 <div class="modal-body">
                     @livewire('post-form')
                 </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-            </div>
+            
       </div>
     </div>
 </div>
@@ -35,12 +32,17 @@
                     <thead>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>Actions</th>
+                        
                     </thead>
                     <tbody>
                         @foreach ($posts as $item)
                             <tr>
                                 <td>{{$item->title}}</td>
                                 <td>{{$item->content}}</td>
+                                <td>
+                                    <button wire:click='delete({{ $item->id }})' class="btn btn-danger">Delete</button>
+                                </td>
                             </tr>
                             
                         @endforeach

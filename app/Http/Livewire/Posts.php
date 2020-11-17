@@ -15,6 +15,11 @@ class Posts extends Component
         'refreshParent' => '$refresh'
     ];
 
+    public function delete($itemId)
+    {
+        Post::destroy($itemId);
+    }
+
 
     public function render()
     {
