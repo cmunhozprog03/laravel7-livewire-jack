@@ -1,4 +1,6 @@
 <div>
+    <label>Featured Image</label><br>
+    <input type="file" wire:model='featuredImage'><br><br>
     <label>Title</label>
     <input wire:model='title' type="text" class="form-control">
         @if ($errors->has('title'))

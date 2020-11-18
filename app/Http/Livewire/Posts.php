@@ -9,15 +9,33 @@ use Livewire\WithPagination;
 class Posts extends Component
 {
     use WithPagination;
+    public $action;
+    public $selectedItem;
+   
+
     protected $paginationTheme = 'bootstrap';
     
     protected $listeners = [
         'refreshParent' => '$refresh'
     ];
 
-    public function delete($itemId)
+    public function selectedItem($itemId, $action)
     {
-        Post::destroy($itemId);
+        $this->selectedItem = $itemId;
+        
+        If($action == 'delete')
+        {
+            $this->dispatchBrowserEvent('openDeleteModal');
+        } else{
+            $this->emit('getModelId', $this->selectedItem);
+            $this->dispatchBrowserEvent('openModal');
+        }
+    }
+
+    public function delete()
+    {
+        Post::destroy($this->selectedItem);
+        $this->dispatchBrowserEvent('closeDeleteModal');
     }
 
 
